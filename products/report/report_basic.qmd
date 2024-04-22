@@ -1,0 +1,56 @@
+---
+title: "projectname"
+author: "yourname"
+date: "`r date()`"
+format:
+  html:
+    toc: true
+    code-fold: show
+    code-tools: true
+    df-print: paged
+    embed-resources: true
+---
+
+```{r}
+#| output: false
+# Load libraries
+library(here)
+library(tidyverse)
+library(lubridate)
+```
+
+## Data
+
+We read and process the data of laboratory-confirmed cases of COVID-19 in Switzerland.
+
+```{r}
+#| output: false
+# Read data
+cases <- read_csv(here("data/raw/COVID19Cases_geoRegion.csv"))
+```
+
+```{r}
+# Process data
+region <- "CH"
+window_start <- ymd("2020-09-01")
+window_end <- ymd("2020-11-30")
+cases <- cases %>%
+  filter(geoRegion == region & datum >= window_start & datum <= window_end) %>%
+  select(datum, entries)
+cases
+```
+
+## Plot
+
+We plot the data of laboratory-confirmed cases of COVID-19 in Switzerland (@fig-cases).
+
+```{r}
+#| label: fig-cases
+#| fig-cap: "Laboratory-confirmed cases of COVID-19 in Switzerland."
+#| fig-width: 8
+#| fig-height: 4
+ggplot(cases, aes(x = datum, y = entries)) +
+  geom_bar(stat = "identity") +
+  labs(x = "", y = "Laboratory-confirmed cases", ) +
+  theme_minimal()
+```
