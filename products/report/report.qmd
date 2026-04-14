@@ -26,11 +26,11 @@ library(unibeCols)
 
 ## Introduction
 
-The aim of this exercises is to visualize the increase of laboratory-confirmed cases of COVID-19 in Switzerland during autumn 2020.
+The aim of this exercise is to visualize the increase in laboratory-confirmed cases of COVID-19 in Switzerland during autumn 2020.
 
 ## Data
 
-We read and process the data of laboratory-confirmed cases of COVID-19 in Switzerland as reported by the [Federal Office of Public Health](https://www.covid19.admin.ch).
+We read and process the data of laboratory-confirmed cases of COVID-19 in Switzerland as reported by the [Federal Office of Public Health](https://idd.bag.admin.ch/).
 
 ```{r}
 #| output: false
